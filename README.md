@@ -31,6 +31,13 @@ For detailed setup, architecture, and contribution guidelines, please refer to t
 
 5. Start the application
 
+## our gallery
+-  create the folder ourgallery in the same directory
+-  Add the images
+  1. login.jpg
+  2. register.jpg
+  3. dashboard.jpg 
+
 ## Troubleshooting
 - Ensure all dependencies are correctly installed
 - Check MongoDB connection
