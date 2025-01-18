@@ -76,8 +76,8 @@ async function register() {
 
 // Weather functionality
 async function fetchAndDisplayWeather() {
-  const apiKey = "0e3b3839fcb7699ba5abd71744fcba5e"; // Replace with your OpenWeatherMap API key
-  const city = "Bengaluru";  // City name
+  const apiKey = "Enter the weather API"; // Replace with your OpenWeatherMap API key
+  const city = "Enter the city name";  // City name
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
   try {
