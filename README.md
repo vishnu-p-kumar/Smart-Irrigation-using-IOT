@@ -64,6 +64,12 @@ For detailed setup, architecture, and contribution guidelines, please refer to t
 4. Commit and push your changes
 5. Open a pull request
 
+## Final output after running the code
+1. login
+
+2. register
+
+3. dashboard
 
 Would you like me to modify or expand on any part of the README instructions?
 If so, please let me know.
