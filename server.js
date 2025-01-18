@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // MongoDB connection setup
-const uri = "mongodb+srv://vishnu_24:vishnu@cluster0.zlyry.mongodb.net/smart-irrigation?retryWrites=true&w=majority";
+const uri = "Replace with your MongoDB address  provided in the interface while creating the database";
 mongoose.connect(uri)
   .then(() => console.log('MongoDB connected successfully'))
   .catch(err => console.error('MongoDB connection error:', err));
