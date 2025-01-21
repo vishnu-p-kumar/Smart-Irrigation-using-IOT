@@ -49,13 +49,12 @@ For detailed setup, architecture, and contribution guidelines, please refer to t
 - **Database**: MongoDB
 - **Authentication**: JWT, BCrypt.js
 
-## Project Structure
 
 ## Key Components
 - **Server**: Express.js server handling routes and middleware
 - **Database**: Mongoose for MongoDB interactions
 - **Authentication**: Custom JWT-based authentication system
-# Contributing to the Project
+
 
 ## Getting Started
 1. Fork the repository
