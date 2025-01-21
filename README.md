@@ -64,13 +64,13 @@ For detailed setup, architecture, and contribution guidelines, please refer to t
 5. Open a pull request
 
 ## Final output after running the code
-**1. login**
+**1. Login**
 ![login](https://github.com/user-attachments/assets/9483ee08-38a4-4a3c-ba35-35e460a949f2)
 
-**2. register**
+**2. Register**
 ![Register](https://github.com/user-attachments/assets/0488a8fe-ad41-4d6f-9e93-848155792691)
 
-**3. dashboard**
+**3. Dashboard**
 ![Dashboard](https://github.com/user-attachments/assets/d7dd66ed-8d6b-4ca8-9a99-75f26e8e2495)
 
 Would you like me to modify or expand on any part of the README instructions?
