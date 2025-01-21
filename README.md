@@ -49,12 +49,12 @@ For detailed setup, architecture, and contribution guidelines, please refer to t
 - **Database**: MongoDB
 - **Authentication**: JWT, BCrypt.js
 
+## Project Structure
 
 ## Key Components
 - **Server**: Express.js server handling routes and middleware
 - **Database**: Mongoose for MongoDB interactions
 - **Authentication**: Custom JWT-based authentication system
-
 
 ## Getting Started
 1. Fork the repository
@@ -63,6 +63,15 @@ For detailed setup, architecture, and contribution guidelines, please refer to t
 4. Commit and push your changes
 5. Open a pull request
 
+## Final output after running the code
+1. login
+![login](https://github.com/user-attachments/assets/9483ee08-38a4-4a3c-ba35-35e460a949f2)
+
+2. register
+![Register](https://github.com/user-attachments/assets/0488a8fe-ad41-4d6f-9e93-848155792691)
+
+3. dashboard
+![Dashboard](https://github.com/user-attachments/assets/d7dd66ed-8d6b-4ca8-9a99-75f26e8e2495)
 
 Would you like me to modify or expand on any part of the README instructions?
 If so, please let me know.
