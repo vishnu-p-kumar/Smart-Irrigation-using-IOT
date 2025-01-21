@@ -64,13 +64,6 @@ For detailed setup, architecture, and contribution guidelines, please refer to t
 4. Commit and push your changes
 5. Open a pull request
 
-## Final output after running the code
-1. login
-![Uploading login.png…]()
-2. register
-![Uploading Register.png…]()
-3. dashboard
-![Uploading Dashboard.png…]()
 
 Would you like me to modify or expand on any part of the README instructions?
 If so, please let me know.
