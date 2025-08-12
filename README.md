@@ -67,9 +67,12 @@ For detailed setup, architecture, and contribution guidelines, please refer to t
 ## Final output after running the code
 1. login
 <img width="2754" height="1636" alt="Login" src="https://github.com/user-attachments/assets/ac4c1f09-c7aa-40cb-94a9-8f93737e43b1" />
+
 2. register
+<img width="684" height="612" alt="image" src="https://github.com/user-attachments/assets/116bde25-6989-42b3-a27a-8a3922923aa8" />
 
 3. dashboard
+<img width="684" height="337" alt="image" src="https://github.com/user-attachments/assets/a32681ea-6e97-4bb5-9ea0-fcd28011f872" />
 
 
 
