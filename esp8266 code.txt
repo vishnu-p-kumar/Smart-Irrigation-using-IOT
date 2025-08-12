@@ -1,0 +1,135 @@
+#include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
+#include <DHT.h>
+
+// WiFi credentials
+const char* ssid = "Wifi name";               // Replace with your WiFi SSID
+const char* password = "WiFi password";        // Replace with your WiFi password
+
+// Server URL
+const char* serverUrl = "ipv4 address"; // Replace with your server's IP and port
+
+// DHT Sensor Configuration
+#define DHTPIN 4           // GPIO 4 (D2 on NodeMCU)
+#define DHTTYPE DHT11      // Define sensor type (DHT11)
+DHT dht(DHTPIN, DHTTYPE);  // Initialize DHT sensor
+
+// Soil Moisture Sensor
+const int soilMoisturePin = A0;           // Soil moisture sensor connected to analog pin A0
+const int dryValue = 1023;                // Sensor value for completely dry soil
+const int wetValue = 300;                 // Sensor value for completely wet soil
+
+// Motor Control (Relay)
+const int relayPin = 5;                   // GPIO pin connected to the relay (D1 on NodeMCU)
+const int soilMoistureThreshold = 40;     // Threshold for soil dryness (percentage)
+const int tempThreshold = 30;     // Temperature threshold in Celsius (ideal for maize)
+const int humidityThreshold = 80; // Maximum humidity threshold (ideal for maize)
+
+
+// Timer variables for non-blocking delay
+unsigned long lastSendTime = 0;
+const unsigned long sendInterval = 10000;  // Interval to send data (10 seconds)
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("\n\nStarting ESP8266 Data Sender with Sensor Readings...");
+
+  // Configure pins
+  pinMode(soilMoisturePin, INPUT);
+  pinMode(relayPin, OUTPUT);
+  digitalWrite(relayPin, HIGH); // Start with the motor off
+
+  dht.begin();
+
+  connectToWiFi();
+}
+
+void loop() {
+  if (millis() - lastSendTime > sendInterval) {
+    lastSendTime = millis();
+
+    // Read sensors
+    int soilMoistureRaw = analogRead(soilMoisturePin);
+    float soilMoisturePercentage = map(soilMoistureRaw, wetValue, dryValue, 100, 0);
+    soilMoisturePercentage = constrain(soilMoisturePercentage, 0, 100);
+    float temperature = dht.readTemperature();
+    float humidity = dht.readHumidity();
+
+    if (isnan(temperature) || isnan(humidity)) {
+      Serial.println("Failed to read from DHT sensor!");
+      return;
+    }
+
+    displaySensorData(soilMoisturePercentage, temperature, humidity);
+    controlMotor(soilMoisturePercentage, temperature, humidity);  // Pass temperature and humidity to controlMotor
+    sendDataToServer(soilMoisturePercentage, temperature, humidity);
+  }
+}
+
+void connectToWiFi() {
+  Serial.print("Connecting to WiFi: ");
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.print(".");
+  }
+
+  Serial.println("\nConnected to WiFi");
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.localIP());
+}
+
+void displaySensorData(float soilMoisture, float temperature, float humidity) {
+  Serial.println("\nSensor Data:");
+  Serial.print("Soil Moisture (%): ");
+  Serial.println(soilMoisture);
+  Serial.print("Temperature (°C): ");
+  Serial.println(temperature);
+  Serial.print("Humidity (%): ");
+  Serial.println(humidity);
+}
+
+void controlMotor(float soilMoisture, float temperature, float humidity) {
+  if (soilMoisture < soilMoistureThreshold || (temperature > tempThreshold && humidity < humidityThreshold)) {
+    digitalWrite(relayPin, LOW); // Turn on the motor
+    Serial.println("Soil is dry or weather conditions require irrigation. Motor ON.");
+  } else {
+    digitalWrite(relayPin, HIGH); // Turn off the motor
+    Serial.println("Soil is moist and weather conditions are ideal. Motor OFF.");
+  }
+}
+
+void sendDataToServer(float soilMoisture, float temperature, float humidity) {
+  if (WiFi.status() != WL_CONNECTED) {
+    connectToWiFi();
+  }
+
+  String jsonPayload = "{";
+  jsonPayload += "\"soilMoisture\":" + String(soilMoisture) + ","; 
+  jsonPayload += "\"temperature\":" + String(temperature) + ","; 
+  jsonPayload += "\"humidity\":" + String(humidity); 
+  jsonPayload += "}";
+
+  Serial.print("JSON Payload Sent: ");
+  Serial.println(jsonPayload);
+
+  WiFiClient client;
+  HTTPClient http;
+  http.begin(client, serverUrl);
+  http.addHeader("Content-Type", "application/json");
+
+  int httpResponseCode = http.POST(jsonPayload);
+
+  if (httpResponseCode > 0) {
+    Serial.print("HTTP Response Code: ");
+    Serial.println(httpResponseCode);
+    Serial.print("Server Response: ");
+    Serial.println(http.getString());
+  } else {
+    Serial.print("Error in sending POST request: ");
+    Serial.println(httpResponseCode);
+  }
+
+  http.end();
+}

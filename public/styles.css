@@ -1,0 +1,192 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+#login-container {
+  background: url('../ourgallery/login.png') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: white;
+}
+
+#register-container {
+  background: url('../ourgallery/register.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: white;
+}
+
+#dashboard-container {
+  background: url('../ourgallery/dashboard.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  padding: 20px;
+  color: white;
+}
+#dashboard-h1
+{
+  color: black;
+}
+
+.form-container {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.sensor-data, .control-panel {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.logout-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #f44336;
+}
+
+.logout-button:hover {
+  background-color: #da190b;
+}
+
+#crop-name {
+  max-width: 300px;
+}
+
+.crop-control {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#crop-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+#suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#suggestions-list li {
+  padding: 8px 15px;
+  cursor: pointer;
+  color: #333;
+  transition: background-color 0.2s;
+}
+
+#suggestions-list li:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+#crop-name-display {
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+#reset-crop {
+  background-color: #ff6b6b;
+  margin-top: 10px;
+}
+
+#reset-crop:hover {
+  background-color: #ff5252;
+}
+
+#crop-details {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 10px;
+  white-space: pre-line;
+}
+
+#esp32-status {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.error-message {
+  color: #ff6b6b;
+  margin-top: 10px;
+}
+
+#sensor-data p {
+  margin-top: 10px;
+}
+
+#weather-info {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+#weather-info h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}

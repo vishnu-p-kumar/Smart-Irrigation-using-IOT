@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Irrigation System </title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Login Page -->
+  <div id="login-container">
+    <div class="form-container">
+      <h2>Login</h2>
+      <input type="text" id="login-username" placeholder="Username" required>
+      <input type="password" id="login-password" placeholder="Password" required>
+      <button id="login-button" onclick="login()">Login</button>
+      <p>Don't have an account? <span onclick="showRegisterPage()" style="color: #4CAF50; cursor: pointer;">Register</span></p>
+      <p class="error-message" id="login-error"></p>
+    </div>
+  </div>
+
+  <!-- Registration Page -->
+  <div id="register-container" style="display:none;">
+    <div class="form-container">
+      <h2>Register</h2>
+      <input type="text" id="register-username" placeholder="Username" required>
+      <input type="password" id="register-password" placeholder="Password" required>
+      <input type="password" id="register-confirm-password" placeholder="Confirm Password" required>
+      <button onclick="register()">Register</button>
+      <p>Already have an account? <span onclick="showLoginPage()" style="color: #4CAF50; cursor: pointer;">Login</span></p>
+      <p class="error-message" id="register-error"></p>
+    </div>
+  </div>
+
+  <!-- Main Dashboard -->
+  <div id="dashboard-container" style="display:none;">
+    <button class="logout-button" onclick="logout()">Logout</button>
+    <h1>Smart Irrigation Dashboard</h1>
+    
+    <div class="dashboard-grid">
+      <div class="sensor-data">
+        <h2>Sensor Readings</h2>
+        <p>Soil Moisture: <span id="soil-moisture">-</span></p>
+        <p>Temperature: <span id="temperature">-</span></p>
+        <p>Humidity: <span id="humidity">-</span></p>
+        <p id="weather-display">Weather: (unavailable)</p>
+      </div>
+      
+      <div class="control-panel">
+        <h2>Control Panel</h2>
+        <div class="crop-control">
+          <label for="crop-name">Crop Name:</label>
+          <input type="text" id="crop-name" placeholder="Enter Crop Name" oninput="updateCropSuggestions()">
+          <div id="crop-suggestions" style="display:none;">
+            <ul id="suggestions-list"></ul>
+          </div>
+          <div id="crop-name-display" style="display:none;"></div>
+          <button id="reset-crop" style="display:none;" onclick="resetCrop()">Reset Crop</button>
+          <p id="crop-details"></p>
+        </div>
+        <button id="connect-esp32" onclick="connectESP32()">Connect ESP32</button>
+        <p id="esp32-status">ESP32 Connection Status: Not Connected</p>
+        <button onclick="toggleWaterPump()">Toggle Water Pump</button>
+        <p id="water-pump-status">Water Pump is OFF</p>
+        <p id="pump-control-mode">Control Mode: Automatic</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
