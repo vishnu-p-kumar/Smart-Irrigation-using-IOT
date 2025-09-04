@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // MongoDB connection setup
-const uri = "Add your mongoDB URL";
+const uri = "Add your mongoDB URL";// add ur MongoDb URL
 mongoose.connect(uri)
   .then(() => console.log('MongoDB connected successfully'))
   .catch(err => console.error('MongoDB connection error:', err));
